@@ -1,23 +1,27 @@
-const RegisterList = ({dado}) => {
+const RegisterList = ({shopDataList, nameFolder}) => {
   
   let nextId = 0
 
   return (
-    <div className="bg bg-zinc-100 p-2 w-96 rounded-md shadow-md">
-      <h2 className="text font-bold text-2xl my-6"> Lojas a cadastrar</h2>
-        <div class="flex flex-row">
-          <div class="basis-1/4"> Num </div>
-          <div class="basis-1/4"> Nome </div>
-          <div class="basis-1/2"> Endereço </div>
+    <div className="bg bg-zinc-100 p-3 min-w-[36em] rounded-t-xl pb-2 shadow-md">
+      <h2 className="text font-bold text-2xl my-6 margin-2"> Lojas a cadastrar</h2>
+      <div className="flex flex-row my-10">
+        <div className="text font-bold text-xl mx-3"> Nome da rota:</div>
+        <div className="text font-semibold text-sky-500 text-xl"> {nameFolder}</div>
+      </div>
+        <div className="flex flex-row">
+          <div className="basis-start ml-2"> Nº </div>
+          <div className="basis-1/2"> Nome </div>
+          <div className="basis-1/2"> Endereço </div>
         </div>
         <ul>
-          {dado.map((shop) => (
+          {shopDataList.map((shop) => (
             <li key={nextId++}>
-              <div className="divider my-0.5"/>
-              <div class="flex flex-row">
-                <div class="basis-1/4">01</div>
-                <div class="basis-1/4"><strong>{shop.name}</strong></div>
-                <div class="basis-1/2"> {shop.address} </div>
+              <div className="divider divider-secondary my-0.5"/>
+              <div className="flex flex-row mx-2">
+                <div className="basis-start text-sm mx-2"><strong>{nextId+1}</strong></div>
+                <div className="basis-1/2 text-sm mr-2 ">{shop.name}</div>
+                <div className="basis-1/2 text-sm"> {shop.address} </div>
               </div>
             </li>
           ))}
