@@ -6,7 +6,7 @@ const Form = () => {
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
 
-  const [inputFolder, setInputFolder] = useState();
+  const [inputFolder, setInputFolder] = useState("");
   const [shopData, setShopData] = useState([]);
   const [data, setData] = useState(null);
 
@@ -34,9 +34,9 @@ const Form = () => {
 
   return (
     <>
-      <div className="flex mx-20 my-10">
-        <div className="bg-zinc-100 p-3 h-auto rounded-md shadow-md">
-          <div className="space-y-2">
+      <div className="flex mx-12 my-14 justify-evenly">
+        <div className=" flex flex-none bg-zinc-100 p-4 rounded-md shadow-md h-[32em]">
+          <div className="space-y-2 m-4">
             <h2 className="text font-bold text-2xl my-6"> Cadastro de rota </h2>
             <label className="form-control w-full max-w-xs">
               <div className="label">
@@ -82,7 +82,7 @@ const Form = () => {
             <br />
 
             <button
-              className="bg-sky-800 p-2 mt-6 w-full rounded-sm"
+              className="bg-cyan-200 p-2 mt-6 w-full rounded-sm"
               onClick={() => {
                 setShopData([
                   ...shopData,
@@ -92,7 +92,7 @@ const Form = () => {
                 setAddress("");
               }}
             >
-              <a className="text text-white"> Enviar para rota </a>
+              <a className="text text-black"> Enviar para rota </a>
             </button>
 
             {/* <div className="">

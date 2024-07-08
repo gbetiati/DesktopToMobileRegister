@@ -1,26 +1,27 @@
-import { useState } from 'react'
 import './App.css'
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Switch from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom';
+import { Routes ,Route } from 'react-router-dom';
 
 import Menu from './components/Menu'
-import Form from './components/Form'
+
+import Settings from './components/Settings'
+import RegisterScreen from './screens/RegisterScreen';
+import UsersScreen from './screens/UsersScreen';
 
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <>
-     <Router>
-            <div>
-                <Menu /> 
-                <Switch>
-                    <Route path="/rotas" element={Form} />
-                </Switch>
-            </div>
-        </Router>
-    </>
+    <div className='bg bg-gradient-to-r from-sky-50 to-cyan-50 h-screen '>
+    <Router>    
+      <Menu/>
+      <Routes>
+        <Route path="/form" element={<RegisterScreen/>}/>
+        <Route path="/users" element={<UsersScreen/>}/>
+        <Route path="/settings" element={<Settings/>}/>
+      </Routes>
+    </Router>
+    </div>
   )
 }
 
