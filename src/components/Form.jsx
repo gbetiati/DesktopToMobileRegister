@@ -82,7 +82,7 @@ const Form = () => {
             <br />
 
             <button
-              className="bg-cyan-200 p-2 mt-6 w-full rounded-sm"
+              className="bg-gradient-to-r from-sky-300 from-20% via-sky-200 via-40% to-sky-300 to-80% hover:shadow-md p-2 mt-6 w-full rounded-sm"
               onClick={() => {
                 setShopData([
                   ...shopData,
