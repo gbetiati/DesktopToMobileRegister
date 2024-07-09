@@ -96,13 +96,13 @@ const Form = () => {
             </button>
 
             {/* <div className="">
-        {data && (
-          <div>
-            <h2>Response from Form:</h2>
-            <pre>{JSON.stringify(data)}</pre>
-          </div>
-        )}
-        </div> */}
+            {data && (
+              <div>
+                <h2>Response from Form:</h2>
+                <pre>{JSON.stringify(data)}</pre>
+              </div>
+            )}
+            </div> */}
           </div>
         </div>
 
