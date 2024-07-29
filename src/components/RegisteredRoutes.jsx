@@ -32,6 +32,7 @@ const RegisteredRoutes = () => {
      
           {...pathsJsonData.map((item, index) => (
           <CardRoutes
+          key={index}
           index={nextId++}
           routeName={item}
           imageCard={quintaav}
