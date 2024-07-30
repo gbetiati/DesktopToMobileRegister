@@ -35,7 +35,7 @@ const Form = () => {
   return (
     <>
       <div className="flex mx-12 my-14 justify-evenly">
-        <div className=" flex flex-none bg-zinc-100 p-4 rounded-md shadow-md h-[32em]">
+        <div className=" flex flex-none bg-zinc-50 p-4 rounded-md shadow-md h-[32em]">
           <div className="space-y-2 m-4">
             <h2 className="text font-bold text-2xl my-6"> Cadastro de rota </h2>
             <label className="form-control w-full max-w-xs">
@@ -48,7 +48,7 @@ const Form = () => {
               <input
                 type="text"
                 placeholder="Nome da rota"
-                className="input input-info input-bordered bg-white input-lg w-full max-w-xs"
+                className="input input-accent input-bordered bg-white input-lg w-full max-w-xs"
                 value={inputFolder}
                 onChange={(e) => setInputFolder(e.target.value)}
               />
@@ -61,7 +61,7 @@ const Form = () => {
               <input
                 type="text"
                 placeholder="Nome da loja"
-                className="input input-info input-bordered bg-white input-sm w-full max-w-xs"
+                className="input input-accent input-bordered bg-white input-sm w-full max-w-xs"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
@@ -74,7 +74,7 @@ const Form = () => {
               <input
                 type="text"
                 placeholder="Endereço da loja"
-                className="input input-info input-bordered bg-white input-sm w-full max-w-xs"
+                className="input input-accent input-bordered bg-white input-sm w-full max-w-xs"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
               />
@@ -82,7 +82,7 @@ const Form = () => {
             <br />
 
             <button
-              className="bg-gradient-to-r from-sky-300 from-20% via-sky-200 via-40% to-sky-300 to-80% hover:shadow-md p-2 mt-6 w-full rounded-sm"
+              className="bg-gradient-to-r from-sky-600 from-20% via-blue-400 via-40% to-sky-600 to-80% hover:shadow-lg p-2 mt-6 w-full rounded-sm"
               onClick={() => {
                 setShopData([
                   ...shopData,

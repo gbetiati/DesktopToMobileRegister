@@ -37,9 +37,9 @@ const DetailPage = () => {
 
   return (
     <>
-    <div className="p-12">
-      <div className="bg bg-zinc-100 rounded-t-md pb-2 shadow-md p-3 min-w-[42em]">
-        <h2 className="text font-bold text-2xl my-6 margin-2">
+    <div className="bg-zinc-50 mx-24 mt-20 p-12 shadow-md rounded-sm">
+
+        <h2 className="font-semibold text-3xl mb-16 text-start">
           {" "}
           Lojas a cadastrar
         </h2>
@@ -71,7 +71,6 @@ const DetailPage = () => {
             </li>
           ))}
         </ul>
-      </div>
       </div>
 
       <div>

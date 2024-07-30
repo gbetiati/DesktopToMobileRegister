@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Menu = () => {
   return (
-    <div className="navbar p-3 sticky top-0 z-50 bg-gradient-to-r from-sky-800 from-10% via-sky-900 via-30% to-sky-700 to-90% shadow-md">
+    <div className="navbar p-3 sticky top-0 z-50 bg-gradient-to-r from-blue-700 from-10% via-sky-600 via-30% to-blue-900 to-90% shadow-md">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
@@ -24,7 +24,7 @@ const Menu = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-gradient-to-r from-sky-100 from-10% via-sky-100 via-30% to-cyan-100 to-90% rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-slate-100 rounded-box z-[1] mt-3 w-52 p-2 space-y-1.5 shadow"
           >
             <li>
               <Link to="/form">Cadastrar rota</Link>

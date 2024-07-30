@@ -25,22 +25,26 @@ const RegisteredRoutes = () => {
   }, []);
 
   return (
-    <div className="flex flex-col-1/2 m-14 p-10 bg-zinc-50">
-      <h2 className="text font-bold text-3xl m-8 mr-12">Rotas registradas:</h2>
-      <div className="grid grid-cols-1 mt-8 gap-8 gap-x-16 lg:grid-cols-3">
+    <div className="bg-zinc-50 mx-24 mt-20 p-12 shadow-md rounded-sm">
+      <div className="">
+        <div className="flex justify-between mb-16">
+          <div className="font font-semibold text-3xl text-start text-slate-700"> Rotas registradas</div>
+          <button> <div className="badge bg-slate-200 badge-lg mr-16 p-4"> <div className="text font-extralight text-sm text-sky-900">Cadastar nova rota</div> </div></button>
+        </div>
+        <div className="grid grid-cols-3 gap-y-10">
 
-     
           {...pathsJsonData.map((item, index) => (
-          <CardRoutes
-          key={index}
-          index={nextId++}
-          routeName={item}
-          imageCard={quintaav}
-          />
-        ))}
- 
+            <CardRoutes
+              key={index}
+              index={nextId++}
+              routeName={item}
+              imageCard={quintaav}
+            />
+          ))}
 
 
+
+        </div>
       </div>
     </div>
   );

@@ -1,25 +1,30 @@
 import { useNavigate } from 'react-router-dom';
 
 const CardRoutes = ({ index, imageCard, routeName }) => {
-  
+
   const navigate = useNavigate();
 
   const handleClick = () => {
     // Navigate to the detail page with the index or some unique identifier
     navigate(`/detail/${routeName}`);
-  }; 
+  };
 
   return (
-    <button className="rounded-r-3xl border-l-4 border-l-slate-500 shadow-inner opacity-90 bg-gradient-to-r from-slate-100 from-20% via-slate-50 via-40% to-slate-200 to-80% transform-gpu transition-all duration-300 hover:-translate-y-4 hover:shadow-lg w-80"
+
+    <button className=""
       onClick={handleClick}
     >
-      {" "}
-      <div className="card-body">
-        <h1 className="card-title font-semibold text-3xl p-3">{routeName}</h1>
+      <div className="card bg-slate-100 w-80 transform-gpu transition-all duration-300 hover:-translate-y-4 hover:shadow-xl">
+        <div className="card-body">
+          <div> <h1 className="card-title text-3xl mb-12 font-bold">{routeName}</h1>
+            <p className='text font-light text-sm row-auto pr-28'> criada em 22/07/2024 </p> </div>
+        </div>
+        <figure className='opacity opacity-85'>
+          <img
+            src="https://img.freepik.com/free-vector/gradient-grainy-texture_23-2148976750.jpg"
+            alt="Shoes" />
+        </figure>
       </div>
-      <figure>
-        <img className="rounded rounded-r-3xl p-3" src={imageCard} alt="Shoes" />
-      </figure>
     </button>
   );
 };

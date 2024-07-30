@@ -6,7 +6,7 @@ import Calendar from "../components/Calendar"
 const UsersScreen = () => {
     return (
         <>
-        <Calendar/>
+
         <Users/>
         </>
     )
