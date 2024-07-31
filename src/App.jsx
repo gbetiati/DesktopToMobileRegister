@@ -1,8 +1,9 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route  } from "react-router-dom";
 
-import Menu from "./components/Menu";
+import Navbar from "./components/NavBar";
 
+import HomeScreen from "./screens/HomeScreen";
 import DetailPage from "./screens/DetailPage";
 import RegisterScreen from "./screens/RegisterScreen";
 import UsersScreen from "./screens/UsersScreen";
@@ -12,9 +13,10 @@ function App() {
   return (
     <div className="bg from-sky-50 h-screen ">
       <Router>
-        <Menu />
+        <Navbar />
         <Routes>
           <Route path="/" element={<RegisterScreen />} />
+          <Route path="/inicio" element={<HomeScreen />} />
           <Route path="/form" element={<RegisterScreen />} />
           <Route path="/users" element={<UsersScreen />} />
           <Route path="/RoutesListScreen" element={<RoutesListScreen />} />

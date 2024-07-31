@@ -1,6 +1,5 @@
 // DetailPage.js
 import React, { useState, useEffect } from "react";
-import RegisterList from "../components/RegisterList";
 import { useParams } from "react-router-dom";
 
 const DetailPage = () => {

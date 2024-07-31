@@ -1,7 +1,7 @@
 const ButtonPost = ({ onClickPost }) => {
   return (
-    <button className="bg-gradient-to-r from-sky-600 from-20% via-blue-400 via-40% to-sky-600 to-80%  hover:shadow-lg p-3 mt-6 rounded-sm" onClick={onClickPost}>
-      <a className="text text-black"> Cadastrar tudo ... </a>
+    <button className="bg-gradient-to-r from-[#70AFCE] from-20% via-[#3b7b9a] via-40% to-[#70AFCE]  hover:shadow-lg p-3 mt-6 rounded-md" onClick={onClickPost}>
+      <a className="text text-white font-semibold"> Cadastrar tudo ... </a>
     </button>
   );
 };
