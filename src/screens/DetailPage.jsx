@@ -1,5 +1,6 @@
 // DetailPage.js
 import React, { useState, useEffect } from "react";
+import RegisterList from "../components/RegisterList";
 import { useParams } from "react-router-dom";
 
 const DetailPage = () => {
@@ -15,17 +16,25 @@ const DetailPage = () => {
 
   const details = fetchDetails(id);
   let nextId = 1;
-  const [shopsJson, setShopsJson] = useState([]);
+  const [shopsJson, setshopsJson] = useState([]);
+  const [shopsAllDocuments, setShopsAllDocuments] = useState([]);
+
+  const routehttp = details.name
 
   useEffect(() => {
     const fetchShopsData = async () => {
       try {
         const response = await fetch(
-          "https://sa-east-1.aws.data.mongodb-api.com/app/application-1212-iqtvhvv/endpoint/getCollectionsAllDocumentsEP"
-        );
+          "https://sa-east-1.aws.data.mongodb-api.com/app/application-1212-iqtvhvv/endpoint/getCollectionsAllDocumentsEP", {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(routehttp ),
+          });
         const shopsJson = await response.json();
         console.log("JSON data:", shopsJson);
-        setShopsJson(shopsJson);
+        setShopsAllDocuments(shopsJson);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -34,10 +43,13 @@ const DetailPage = () => {
     fetchShopsData();
   }, []);
 
+  console.log(typeof(shopsAllDocuments))
+
+
   return (
     <>
     <div className="bg-zinc-50 mx-24 mt-20 p-12 shadow-md rounded-sm">
-
+    <h1>{typeof(shopsAllDocuments)}</h1>
         <h2 className="font-semibold text-3xl mb-16 text-start">
           {" "}
           Lojas a cadastrar
@@ -56,7 +68,7 @@ const DetailPage = () => {
           <div className="basis-end"> Controle </div>
         </div>
         <ul>
-          {shopsJson.map(({ description, createdAt }) => (
+          {shopsAllDocuments.map(( {description} ) => (
             <li key={nextId++}>
               <div className="divider divider-neutral my-0.5" />
               <div className="flex flex-row mx-">
@@ -64,7 +76,7 @@ const DetailPage = () => {
                   <strong>{nextId + 1}</strong>
                 </div>
                 <div className="basis-1/2 text-sm mr-2 ">{description}</div>
-                <div className="basis-1/2 text-sm"> {createdAt} </div>
+                <div className="basis-1/2 text-sm"> b</div>
                 <div className="basis-end mx-1"> X  </div>
               </div>
             </li>
