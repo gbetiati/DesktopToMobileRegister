@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import RegisterList from "./RegisterList";
 import ButtonPost from "./ButtonPost";
 
+
 const Form = () => {
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
@@ -11,6 +12,7 @@ const Form = () => {
   const [data, setData] = useState(null);
 
   let nextId = 0;
+  let createDate = new Date();
 
   const callFunction = async () => {
     try {
@@ -103,7 +105,12 @@ const Form = () => {
                       onClick={() => {
                         setShopData([
                           ...shopData,
-                          { id: nextId++, name: name, address: address },
+                          {
+                            id: nextId++,
+                            name: name,
+                            address: address,
+                            createdAt: createDate,
+                          },
                         ]);
                         setName("");
                         setAddress("");
