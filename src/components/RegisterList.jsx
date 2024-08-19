@@ -3,7 +3,7 @@ const RegisterList = ({shopDataList, nameFolder}) => {
   let nextId = 0
 
   return (
-    <div className="bg bg-zinc-100 rounded-t-xl pb-2 shadow-md p-3 min-w-[30em]" >
+    <div className="bg bg-zinc-100 rounded-t-xl pb-2 shadow-md p-3 sm:min-w-[20em]" >
       <h2 className="text font-semibold text-2xl my-6 margin-2 text-slate-900"> Lojas a cadastrar</h2>
       <div className="flex flex-row my-10">
         <div className="text font-semibold text-xl mx-3"> Nome da rota:</div>
