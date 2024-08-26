@@ -43,7 +43,6 @@ const RegisteredRoutes = () => {
                   {" "}
                   Rotas registradas
                 </div>
-
                 <button className="bg-secondary hover:bg-blue-800 text-white font-semibold py-1.5 px-4 rounded-md">
                   <Link to="/form">Cadastar nova rota</Link>
                 </button>

@@ -11,7 +11,7 @@ import RoutesListScreen from "./screens/RoutesListScreen";
 
 function App() {
   return (
-    <div className="bg from-sky-50 h-screen ">
+    <div className="bg-gradient-to-b from-slate-200 h-full ">
       <Router>
         <Navbar />
         <Routes>

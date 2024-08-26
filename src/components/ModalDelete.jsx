@@ -1,4 +1,4 @@
-const ModalDelete = ({ onConfirmDel, onCancelDel }) => {
+const ModalDelete = ({ onConfirmDel, onCancelDel, loading , showInitialContent}) => {
   return (
     <div className="card bg-zinc-200 text-neutral-content w-96">
       <div className="card-body items-center text-center">
@@ -12,7 +12,15 @@ const ModalDelete = ({ onConfirmDel, onCancelDel }) => {
             Cancelar
           </button>
         </div>
+        
+    
+      <div className="pt-5">
+        {showInitialContent ? null : (
+        <p>{loading ? <span className="loading loading-spinner loading-md"></span> : <strong>Deletado com sucesso</strong>}</p>
+      )}
       </div>
+      </div>
+      
     </div>
   );
 };

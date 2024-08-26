@@ -1,9 +1,11 @@
+import AllShopList from "../components/AllShopList"
+import HomeComponents from "../components/HomeComponents"
 
 const HomeScreen = () => {
     return (
         <>
-        <h1>home scrnn</h1>
 
+        <HomeComponents/>
         </>
     )
 }

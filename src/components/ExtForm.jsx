@@ -2,18 +2,22 @@ import React, { useState } from "react";
 import RegisterList from "./RegisterList";
 import ButtonPost from "./ButtonPost";
 
-const ExtForm = ({ routeParam , onClickSend}) => {
+const ExtForm = ({ routeParam, onClickSend }) => {
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
 
   const [inputFolder, setInputFolder] = useState("");
   const [shopData, setShopData] = useState([]);
   const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [showInitialContent, setShowInitialContent] = useState(true);
 
   let nextId = 0;
   let createDate = new Date();
 
   const callFunction = async () => {
+    setLoading(true);
+    setShowInitialContent(false);
     try {
       const response = await fetch(
         "https://sa-east-1.aws.data.mongodb-api.com/app/application-1212-iqtvhvv/endpoint/EPcreateShopExtRoute",
@@ -30,6 +34,8 @@ const ExtForm = ({ routeParam , onClickSend}) => {
       setData(data);
     } catch (error) {
       console.error("Error calling serverless function:", error);
+    } finally {
+      setLoading(false); // Stop loading
     }
   };
   return (
@@ -39,9 +45,7 @@ const ExtForm = ({ routeParam , onClickSend}) => {
           <h1 className="text-3xl font-semibold tracking-tight text-gray-900">
             Cadastrar nova loja na rota {routeParam}
           </h1>
-          <button className="fixed right-0 mr-7"
-                  onClick={onClickSend}
-                  >
+          <button className="fixed right-0 mr-7" onClick={onClickSend}>
             X
           </button>
         </div>
@@ -80,7 +84,7 @@ const ExtForm = ({ routeParam , onClickSend}) => {
                         onChange={(e) => setName(e.target.value)}
                       />
                     </label>
-                    <label className="form-control w-full max-w-xs">
+                    <label className="form-control required: w-full max-w-xs">
                       <div className="label">
                         <span className="label-text font-thin"> Endereço</span>
                         <span className="label-text-alt font-extralight">
@@ -98,7 +102,7 @@ const ExtForm = ({ routeParam , onClickSend}) => {
                     <br />
 
                     <button
-                      className="bg-gradient-to-r  from-[#70AFCE] from-20% via-[#3b7b9a] via-40% to-[#70AFCE] to-80% hover:shadow-lg p-2 mt-6 w-full rounded-md"
+                      className="bg-accent hover:shadow-lg p-2 mt-6 w-full rounded-md"
                       onClick={() => {
                         setShopData([
                           ...shopData,
@@ -116,18 +120,9 @@ const ExtForm = ({ routeParam , onClickSend}) => {
                     >
                       <a className="text text-zinc-100 font-semibold">
                         {" "}
-                        Enviar para rota{" "}
+                        Enviar para lista
                       </a>
                     </button>
-
-  <div className="">
-    {data && (
-      <div>
-        <h2>Response from Form:</h2>
-        <pre>{JSON.stringify(data)}</pre>
-      </div>
-    )}
-    </div> 
                   </div>
                 </div>
 
@@ -137,6 +132,18 @@ const ExtForm = ({ routeParam , onClickSend}) => {
                     nameFolder={routeParam}
                   />
                   <ButtonPost onClickPost={callFunction} />
+
+                  <div className="self-center pt-6">
+                    {showInitialContent ? null : (
+                      <p>
+                        {loading ? (
+                          <span className="loading loading-spinner loading-lg"></span>
+                        ) : (
+                          <p className="text text-slate-700 font-semibold text-lg"> Rota registrada com sucesso</p>
+                        )}
+                      </p>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
