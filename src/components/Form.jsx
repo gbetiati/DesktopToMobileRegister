@@ -44,7 +44,7 @@ const Form = () => {
       </header>
       <main>
         <div className="mx-auto flex-row max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-          <div className="bg-zinc-50 mx-8 mt-20 p-12 shadow-md rounded-sm">
+          <div className="bg-zinc-50 mx-8 mt-20 p-12 shadow-2xl rounded-sm">
             <div className="">
               <div className="flex flex-col">
                 <div className="flex flex-row justify-between">
@@ -118,7 +118,7 @@ const Form = () => {
                   </button>*/}
                 </div> 
 
-                <div className="mb-16 bg-gradient-to-r from-blue-100 via-blue-50 to-blue-100 opacity-90 rounded-t-xl p-10">
+                <div className="mb-14 border-[1px] bg-zinc-100 border-zinc-50 drop-shadow-md rounded-3xl pt-9 pb-7 px-4">
                   <ul className="steps">
                     <li className="step step-accent text-sm">
                       Insira o nome da rota e dados da loja
@@ -134,9 +134,9 @@ const Form = () => {
                     </li>
                   </ul>
                 </div>
-                <div className="flex mb-16 justify-around">
-                  <div className="flex flex-row">
-                    <div className=" flex flex-none bg-zinc-100 p-4 rounded-md shadow-md h-[32em]">
+                <div className="flex mb-16">
+                  <div className="flex flex-none">
+                    <div className=" bg-zinc-100 p-4 shadow-md h-[32em]">
                       <div className="space-y-2 m-4">
                         <h2 className="font font-semibold text-2xl text-start text-slate-900 my-6 margin-2">
                           {" "}
@@ -195,7 +195,7 @@ const Form = () => {
                         <br />
 
                         <button
-                          className="bg-accent hover:shadow-lg p-2 mt-6 w-full rounded-md"
+                          className="bg-accent hover:shadow-lg p-2 mt-6 w-full rounded-lg border-2 border-zinc-200"
                           onClick={() => {
                             setShopData([
                               ...shopData,
@@ -210,15 +210,15 @@ const Form = () => {
                             setAddress("");
                           }}
                         >
-                          <a className="text text-zinc-100 font-semibold">
+                          <a className="text text-zinc-100 font-normal">
                             {" "}
-                            Enviar para rota{" "}
+                            Enviar para lista de cadastro{" "}
                           </a>
                         </button>
                       </div>
                     </div>
 
-                    <div className="flex flex-col ml-10">
+                    <div className=" ml-10">
                       <RegisterList
                         shopDataList={shopData}
                         nameFolder={inputFolder}
