@@ -210,7 +210,7 @@ const Form = () => {
                             setAddress("");
                           }}
                         >
-                          <a className="text text-zinc-100 font-normal">
+                          <a className="text text-zinc-100 font-semibold">
                             {" "}
                             Enviar para lista de cadastro{" "}
                           </a>
