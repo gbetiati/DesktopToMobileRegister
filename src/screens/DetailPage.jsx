@@ -22,8 +22,7 @@ const DetailPage = () => {
   const [isModalVisibleB, setModalVisibleB] = useState(false);
   const [isModalVisibleC, setModalVisibleC] = useState(false);
   const [idModal, setIdModal] = useState(null);
-  const [idModalToDel, setIdModalToDel] = useState(null);
-  const [newDescription, setNewDescription] = useState("");
+  const [idModalToDel, setIdModalToDel] = useState(null);  
   const [loading, setLoading] = useState(false);
   const [showInitialContent, setShowInitialContent] = useState(true);
 
@@ -207,7 +206,7 @@ const DetailPage = () => {
       </Modal>
 
       <Modal open={isModalVisibleB} onClose={toggleModalB}>
-        <Box className="fixed top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] bg-zinc-50">
+        <Box className="fixed top-1/2 left-1/2  translate-x-[-50%] translate-y-[-50%] bg-zinc-50 w-full">
           <ExtForm routeParam={details.name} onClickSend={toggleModalB} />
         </Box>
       </Modal>

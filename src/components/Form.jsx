@@ -9,11 +9,19 @@ const Form = () => {
   const [inputFolder, setInputFolder] = useState("");
   const [shopData, setShopData] = useState([]);
   const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [showInitialContent, setShowInitialContent] = useState(true);
 
   let nextId = 0;
   let createDate = new Date();
 
+  let isCompleteVar = false;
+  let positionVar = 0;
+
   const callFunction = async () => {
+    setLoading(true);
+    setShowInitialContent(false);
+
     try {
       const response = await fetch(
         "https://sa-east-1.aws.data.mongodb-api.com/app/application-1212-iqtvhvv/endpoint/EPcreateRoutes",
@@ -30,6 +38,9 @@ const Form = () => {
       setData(data);
     } catch (error) {
       console.error("Error calling serverless function:", error);
+    } finally {
+      setLoading(false);
+      setShopData([]);
     }
   };
 
@@ -52,7 +63,7 @@ const Form = () => {
                     {" "}
                     Siga os passos para cadastrar novas rotas
                   </div>
-             {/*     <button className="btn btn-ghost">
+                  {/*     <button className="btn btn-ghost">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       x="0px"
@@ -116,8 +127,7 @@ const Form = () => {
                       ></rect>
                     </svg>
                   </button>*/}
-                </div> 
-
+                </div>
                 <div className="mb-14 border-[1px] bg-zinc-100 border-zinc-50 drop-shadow-md rounded-3xl pt-9 pb-7 px-4">
                   <ul className="steps">
                     <li className="step step-accent text-sm">
@@ -137,72 +147,108 @@ const Form = () => {
                 <div className="flex mb-16">
                   <div className="flex flex-none">
                     <div className=" bg-zinc-100 p-4 shadow-md h-[32em]">
-                      <div className="space-y-2 m-4">
-                        <h2 className="font font-semibold text-2xl text-start text-slate-900 my-6 margin-2">
+                      <div className="space-y- m-4 w-60">
+                        <h2 className="font font-semibold text-2xl text-start text-slate-900  mt-5 mb-14 margin-2">
                           {" "}
                           Cadastro de rota
                         </h2>
-                        <label className="form-control w-full max-w-xs">
-                          <div className="label">
-                            <span className="label-text text-lg font-thin">
-                              Nome da rota
-                            </span>
-                            <span className="label-text-alt">
-                              Top Right label
-                            </span>
+                        <div className="space-y-4">
+                          <div>
+                            <label
+                              htmlFor="inputroutename"
+                              className="text-sm font-medium  text-gray-900"
+                            >
+                              <div className="text text-start">
+                                Nome da rota
+                              </div>
+                              
+                            </label>
+                            <div className="relative mt-2 rounded-md shadow-sm w-full max-w-xs">
+                              <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                {/* Add an icon or placeholder if needed */}
+                              </div>
+                              <input
+                                id="inputroutename"
+                                name="inputroutename"
+                                type="text"
+                                placeholder="Nome da rota"
+                                className="block w-full rounded-md border-0 mb-6 py-4 pl-7 pr-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm"
+                                value={inputFolder}
+                                onChange={(e) => setInputFolder(e.target.value)}
+                              />
+                            </div>
                           </div>
-                          <input
-                            type="text"
-                            placeholder="Nome da rota"
-                            className="input input-accent input-bordered bg-white input-lg w-full max-w-xs"
-                            value={inputFolder}
-                            onChange={(e) => setInputFolder(e.target.value)}
-                          />
-                        </label>
-                        <label className="form-control w-full max-w-xs">
-                          <div className="label">
-                            <span className="label-text font-thin">Nome</span>
-                            <span className="label-text-alt font-extralight">
-                              label
-                            </span>
-                          </div>
-                          <input
-                            type="text"
-                            placeholder="Nome da loja"
-                            className="input input-accent input-bordered bg-white input-sm w-full max-w-xs"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                          />
-                        </label>
-                        <label className="form-control w-full max-w-xs">
-                          <div className="label">
-                            <span className="label-text font-thin">
-                              {" "}
-                              Endereço
-                            </span>
-                            <span className="label-text-alt font-extralight">
-                              label
-                            </span>
-                          </div>
-                          <input
-                            type="text"
-                            placeholder="Endereço da loja"
-                            className="input input-accent input-bordered bg-white input-sm w-full max-w-xs"
-                            value={address}
-                            onChange={(e) => setAddress(e.target.value)}
-                          />
-                        </label>
-                        <br />
 
+                          <div>
+                            <label
+                              htmlFor="inputshopname"
+                              className="block text-sm font-medium text-gray-900"
+                            >
+                             <div className="text text-start">
+                                Nome loja
+                              </div>
+                            </label>
+                            <div className="relative mt-2 rounded-md shadow-sm w-full max-w-xs">
+                              <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                {/* Add an icon or placeholder if needed */}
+                              </div>
+                              <input
+                                id="inputshopname"
+                                name="inputshopname"
+                                type="text"
+                                placeholder="Nome da loja"
+                                className="block w-full rounded-md border-0 py-1.5 pl-7 pr-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                              />
+                            </div>
+                          </div>
+
+                          <div>
+                            <label
+                              htmlFor="inputshopadress"
+                              className="block text-sm font-medium text-gray-900"
+                            >
+                             <div className="text text-start">
+                                Endereco
+                              </div>
+                            </label>
+                            <div className="relative mt-2 rounded-md shadow-sm w-full max-w-xs">
+                              <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                {/* Add an icon or placeholder if needed */}
+                              </div>
+                              <input
+                                id="inputshopadress"
+                                name="inputshopadress"
+                                type="text"
+                                placeholder="Endereço da loja"
+                                className="block w-full rounded-md border-0 py-1.5 pl-7 pr-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm"
+                                value={address}
+                                onChange={(e) => setAddress(e.target.value)}
+                              />
+                            </div>
+                          </div>
+                          
+                        </div>
+                        <br />
                         <button
                           className="bg-accent hover:shadow-lg p-2 mt-6 w-full rounded-lg border-2 border-zinc-200"
                           onClick={() => {
+                            if (!inputFolder || !name || !address) {
+                              alert(
+                                "Por favor, preencha todos os campos antes de enviar."
+                              );
+                              return;
+                            }
+
                             setShopData([
                               ...shopData,
                               {
                                 id: nextId++,
                                 name: name,
                                 address: address,
+                                isComplete: isCompleteVar,
+                                position: positionVar,
                                 createdAt: createDate,
                               },
                             ]);
@@ -222,8 +268,23 @@ const Form = () => {
                       <RegisterList
                         shopDataList={shopData}
                         nameFolder={inputFolder}
+                        onClickCleanList={() => setShopData([])}
                       />
                       <ButtonPost onClickPost={callFunction} />
+                      <div className="self-center pt-6">
+                        {showInitialContent ? null : (
+                          <div>
+                            {loading ? (
+                              <span className="loading loading-spinner loading-lg"></span>
+                            ) : (
+                              <div className="text text-slate-700 font-semibold text-lg">
+                                {" "}
+                                Rota registrada com sucesso
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>

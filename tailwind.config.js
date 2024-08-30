@@ -7,15 +7,17 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [require('daisyui'),],
+  plugins: [ require('daisyui'),
+    require('@tailwindcss/forms'),
+   ],
     daisyui: {
       themes: [
         {
           mytheme: {
-            "primary": "#1f2937",      
-            "secondary": "#2a5085",     
+            "primary": "#3b7b9a",      
+            "secondary": "#3b7b9a",     
             "accent": "#3b7b9a",        
-            "neutral": "#70AFCE",
+            "neutral": "#474747",
             "info": "#a5def1",
             
             "success": "#34c759",

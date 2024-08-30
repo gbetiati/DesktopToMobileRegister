@@ -15,5 +15,5 @@
     "noEmit": true,
     "jsx": "react-jsx"  // For React 18 and newer
   },
-  "include": ["src"]
+  "include": ["src","./src","../src","*/src","**/src"]
 }
