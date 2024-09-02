@@ -11,6 +11,7 @@ const Form = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [showInitialContent, setShowInitialContent] = useState(true);
+  const [responseData, setResponseData] = useState(null);
 
   let nextId = 0;
   let createDate = new Date();
@@ -33,11 +34,11 @@ const Form = () => {
           body: JSON.stringify({ shopData, inputFolder }), // Include data from the UI
         }
       );
-
       const data = await response.json();
-      setData(data);
+      setResponseData(data);
     } catch (error) {
       console.error("Error calling serverless function:", error);
+      setResponseData("Erro ao cadastrar")
     } finally {
       setLoading(false);
       setShopData([]);
@@ -161,7 +162,6 @@ const Form = () => {
                               <div className="text text-start">
                                 Nome da rota
                               </div>
-                              
                             </label>
                             <div className="relative mt-2 rounded-md shadow-sm w-full max-w-xs">
                               <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
@@ -184,9 +184,7 @@ const Form = () => {
                               htmlFor="inputshopname"
                               className="block text-sm font-medium text-gray-900"
                             >
-                             <div className="text text-start">
-                                Nome loja
-                              </div>
+                              <div className="text text-start">Nome loja</div>
                             </label>
                             <div className="relative mt-2 rounded-md shadow-sm w-full max-w-xs">
                               <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
@@ -209,9 +207,7 @@ const Form = () => {
                               htmlFor="inputshopadress"
                               className="block text-sm font-medium text-gray-900"
                             >
-                             <div className="text text-start">
-                                Endereco
-                              </div>
+                              <div className="text text-start">Endereco</div>
                             </label>
                             <div className="relative mt-2 rounded-md shadow-sm w-full max-w-xs">
                               <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
@@ -228,7 +224,6 @@ const Form = () => {
                               />
                             </div>
                           </div>
-                          
                         </div>
                         <br />
                         <button
@@ -279,7 +274,14 @@ const Form = () => {
                             ) : (
                               <div className="text text-slate-700 font-semibold text-lg">
                                 {" "}
-                                Rota registrada com sucesso
+                                {responseData && (
+                                  <div>
+                                    <h3>Response Data:</h3>
+                                    <pre>
+                                      {JSON.stringify(responseData, null, 2)}
+                                    </pre>
+                                  </div>
+                                )}
                               </div>
                             )}
                           </div>
