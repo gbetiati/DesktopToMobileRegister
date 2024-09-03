@@ -8,7 +8,7 @@ import Test from "../components/Test"
 const HomeScreen = () => {
     return (
         <>
-         <DashDoneTasks/>
+         <DashDoneTasks />
         
         </>
     )
