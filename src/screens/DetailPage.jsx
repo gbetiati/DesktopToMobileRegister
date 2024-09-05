@@ -14,7 +14,7 @@ const DetailPage = () => {
     };
   };
 
-  const details = fetchDetails(id);
+const details = fetchDetails(id);
 
   const [shopsAllDocuments, setShopsAllDocuments] = useState([]);
   const [data, setData] = useState("");
@@ -125,14 +125,14 @@ const DetailPage = () => {
         </div>
         <div className="">
         <ul>
-          {shopsAllDocuments.map(({ description, _id }) => (
+          {shopsAllDocuments.map(({ description, _id , adress}) => (
             <li key={nextId++}>
               <div className="divider divider-primary my-[0.1px]" />
               <div className="flex flex-row mx-1">
                 <div className="basis-start text-sm mx-2">
                   <strong>{nextId + 1}</strong>
                 </div>
-                <div className="basis-1/2 text-sm mr-2">{description}</div>
+                <img className="basis-1/2 text-sm mr-2" src={`${adress}`}/>
                 <div className="basis-1/2 text-sm mr-2">{_id}</div>
 
                 <div className="basis-end mx-1">
@@ -172,7 +172,8 @@ const DetailPage = () => {
         </div>
       </div>
 
-      <div>
+      <div> 
+
         <h1>{details.name}</h1>
       </div>
       <Modal

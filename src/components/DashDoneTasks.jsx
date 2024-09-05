@@ -14,10 +14,18 @@ const getDayOfWeek = (dateString) => {
   return daysOfWeek[date.getDay()];
 };
 
+const getMonth = (dateString) => {
+  const date = new Date(dateString);
+  const monthsOfYear = [
+    "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", 
+    "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+  ];
+  return monthsOfYear[date.getMonth()];
+};
+
 const formatDate = (dateString) => {
   const date = new Date(dateString);
   return date.toLocaleDateString("pt-BR", {
-    // Example for Portuguese (Brazil) format
     day: "2-digit",
     month: "short",
     year: "numeric",
@@ -28,7 +36,8 @@ const filtersPlaceHolders = {
   descriptionInput: "Nome da loja",
   isCompleteSelect: "Status do serviço",
   userIdInput: "ID de usuário",
-  dayWeekSelect: "Dia",
+  dayWeekSelect: "Dia da semana",
+  monthSelect: "Mês",
   routeSelect: "Rota",
 };
 
@@ -41,7 +50,8 @@ const DashDoneTasks = () => {
     isComplete: "",
     user_id: "",
     dayOfWeek: "",
-    routeBelong: "", // Add this line
+    month: "",
+    routeBelong: "",
   });
 
   let nextId = 0;
@@ -52,7 +62,6 @@ const DashDoneTasks = () => {
           "https://sa-east-1.aws.data.mongodb-api.com/app/application-1212-iqtvhvv/endpoint/EPgetCollectionsNames"
         );
         const jsonData = await response.json();
-        console.log("JSON data:", jsonData);
         setPathsJsonData(jsonData);
       } catch (error) {
         console.error("Error fetching buscar:", error);
@@ -74,7 +83,6 @@ const DashDoneTasks = () => {
           }
         );
         const data = await response.json();
-        console.log("JSON data recebido i:", data);
         setAllDoneTasksJson(data);
         setFilteredTasks(data);
       } catch (error) {
@@ -87,17 +95,19 @@ const DashDoneTasks = () => {
 
   useEffect(() => {
     const applyFilters = () => {
-      const { description, isComplete, user_id, dayOfWeek, routeBelong } =
+      const { description, isComplete, user_id, dayOfWeek, month, routeBelong } =
         filterCriteria;
       const filtered = allDoneTasksJson.filter((task) => {
         const taskDayOfWeek = getDayOfWeek(task.createdAt);
+        const taskMonth = getMonth(task.createdAt);
 
         return (
           (description ? task.description.includes(description) : true) &&
           (isComplete ? task.isComplete === (isComplete === "true") : true) &&
           (user_id ? task.user_id.includes(user_id) : true) &&
           (dayOfWeek ? taskDayOfWeek === dayOfWeek : true) &&
-          (routeBelong ? task.routeBelong === routeBelong : true) // Add this line
+          (month ? taskMonth === month : true) &&
+          (routeBelong ? task.routeBelong === routeBelong : true)
         );
       });
       setFilteredTasks(filtered);
@@ -129,8 +139,8 @@ const DashDoneTasks = () => {
                 className="rounded-md border-0 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm"
               />
             </label>
-            <label className="">
-              {filtersPlaceHolders.userIdInput}
+            <label>
+              {filtersPlaceHolders.userIdInput}:
               <input
                 type="text"
                 name="user_id"
@@ -139,8 +149,8 @@ const DashDoneTasks = () => {
                 className="rounded-md border-0 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm"
               />
             </label>
-            <label className="">
-              {filtersPlaceHolders.isCompleteSelect}
+            <label>
+              {filtersPlaceHolders.isCompleteSelect}:
               <select
                 name="isComplete"
                 value={filterCriteria.isComplete}
@@ -152,8 +162,8 @@ const DashDoneTasks = () => {
                 <option value="false">False</option>
               </select>
             </label>
-            <label className="">
-              {filtersPlaceHolders.routeSelect}
+            <label>
+              {filtersPlaceHolders.routeSelect}:
               <select
                 name="routeBelong"
                 value={filterCriteria.routeBelong}
@@ -162,51 +172,58 @@ const DashDoneTasks = () => {
               >
                 <option value="">All</option>
                 {pathsJsonData.map((route, index) => (
-                  <option key={nextId++} index={index}>
+                  <option key={index} value={route}>
                     {route}
                   </option>
                 ))}
               </select>
             </label>
           </div>
-        <div className="w-1/2 bg-slate-200 p-3 border-2 m-3 border-slate-300">
-        <h2 className="mb-4">Filtro de data</h2>
-          <label className="ml-4">
-            {filtersPlaceHolders.dayWeekSelect}
-            <select
-              name="dayOfWeek"
-              value={filterCriteria.dayOfWeek}
-              onChange={handleFilterChange}
-              className="ml-2 rounded-md border-gray-300 p-1"
-            >
-              <option value="">All</option>
-              <option value="Sunday">Sunday</option>
-              <option value="Monday">Segunda</option>
-              <option value="Tuesday">Terça</option>
-              <option value="Wednesday">Wednesday</option>
-              <option value="Thursday">Thursday</option>
-              <option value="Friday">Friday</option>
-              <option value="Saturday">Saturday</option>
-            </select>
-          </label>
-          <label className="ml-4">
-            {filtersPlaceHolders.dayWeekSelect}
-            <select
-              name="dayOfWeek"
-              value={filterCriteria.dayOfWeek}
-              onChange={handleFilterChange}
-              className="ml-2 rounded-md border-gray-300 p-1"
-            >
-              <option value="">All</option>
-              <option value="Sunday">Sunday</option>
-              <option value="Monday">Segunda</option>
-              <option value="Tuesday">Terça</option>
-              <option value="Wednesday">Wednesday</option>
-              <option value="Thursday">Thursday</option>
-              <option value="Friday">Friday</option>
-              <option value="Saturday">Saturday</option>
-            </select>
-          </label>
+
+          <div className="w-1/2 bg-slate-200 p-3 border-2 m-3 border-slate-300">
+            <h2 className="mb-4">Filtro de data</h2>
+            <label className="ml-4">
+              {filtersPlaceHolders.dayWeekSelect}:
+              <select
+                name="dayOfWeek"
+                value={filterCriteria.dayOfWeek}
+                onChange={handleFilterChange}
+                className="ml-2 rounded-md border-gray-300 p-1"
+              >
+                <option value="">All</option>
+                <option value="Sunday">Sunday</option>
+                <option value="Monday">Segunda-feira</option>
+                <option value="Tuesday">Terça-feira</option>
+                <option value="Wednesday">Quarta-feira</option>
+                <option value="Thursday">Quinta-feira</option>
+                <option value="Friday">Sexta-feira</option>
+                <option value="Saturday">Sábado</option>
+              </select>
+            </label>
+
+            <label className="ml-4">
+              {filtersPlaceHolders.monthSelect}:
+              <select
+                name="month"
+                value={filterCriteria.month}
+                onChange={handleFilterChange}
+                className="ml-2 rounded-md border-gray-300 p-1"
+              >
+                <option value="">All</option>
+                <option value="Janeiro">Janeiro</option>
+                <option value="Fevereiro">Fevereiro</option>
+                <option value="Março">Março</option>
+                <option value="Abril">Abril</option>
+                <option value="Maio">Maio</option>
+                <option value="Junho">Junho</option>
+                <option value="Julho">Julho</option>
+                <option value="Agosto">Agosto</option>
+                <option value="Setembro">Setembro</option>
+                <option value="Outubro">Outubro</option>
+                <option value="Novembro">Novembro</option>
+                <option value="Dezembro">Dezembro</option>
+              </select>
+            </label>
           </div>
         </div>
 
@@ -216,7 +233,7 @@ const DashDoneTasks = () => {
               <tr>
                 <th className="py-5">N</th>
                 <th>Nome da loja</th>
-                <th>Nome da loja</th>
+                <th>Assinatura</th>
                 <th>Serviço realizado</th>
                 <th>Usuário</th>
                 <th>Data</th>
@@ -224,11 +241,11 @@ const DashDoneTasks = () => {
             </thead>
             <tbody>
               {filteredTasks.map(
-                ({ description, createdAt, user_id, isComplete }) => (
+                ({ description, createdAt, user_id, isComplete, signature }) => (
                   <tr key={nextId++}>
                     <th>{nextId}</th>
                     <td>{description}</td>
-                    <td>{description}</td>
+                    <td><img src={signature} alt="Signature" /></td>
                     <td>{isComplete.toString()}</td>
                     <td>{user_id}</td>
                     <td>{formatDate(createdAt)}</td>
@@ -239,11 +256,11 @@ const DashDoneTasks = () => {
             <tfoot>
               <tr>
                 <th></th>
-                <th>Name</th>
-                <th>Job</th>
-                <th>Company</th>
-                <th>Location</th>
-                <th>Last Login</th>
+                <th>Nome</th>
+                <th>Assinatura</th>
+                <th>Serviço</th>
+                <th>Usuário</th>
+                <th>Data</th>
               </tr>
             </tfoot>
           </table>
