@@ -47,7 +47,7 @@ const Form = () => {
 
   return (
     <>
-      <header className="bg-white shadow">
+      <header className="bg-white">
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
           <h1 className="text-3xl font-bold tracking-tight text-gray-900">
             Cadastro de rotas
@@ -56,7 +56,7 @@ const Form = () => {
       </header>
       <main>
         <div className="mx-auto flex-row max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-          <div className="bg-zinc-50 mx-8 mt-20 p-12 shadow-2xl rounded-sm">
+          <div className="bg-zinc-50 mx-8 mt-20 p-12 shadow-md rounded-sm">
             <div className="">
               <div className="flex flex-col">
                 <div className="flex flex-row justify-between">

@@ -132,8 +132,8 @@ const details = fetchDetails(id);
                 <div className="basis-start text-sm mx-2">
                   <strong>{nextId + 1}</strong>
                 </div>
-                <img className="basis-1/2 text-sm mr-2" src={`${adress}`}/>
-                <div className="basis-1/2 text-sm mr-2">{_id}</div>
+                <div className="basis-1/2 text-sm mr-2">{description}</div>
+                <div className="basis-1/2 text-sm mr-2">{adress}</div>
 
                 <div className="basis-end mx-1">
                   <div className="flex flex-row">
