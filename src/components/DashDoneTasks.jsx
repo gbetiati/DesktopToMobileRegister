@@ -245,7 +245,7 @@ const DashDoneTasks = () => {
                   <tr key={nextId++}>
                     <th>{nextId}</th>
                     <td>{description}</td>
-                    <td><img src={signature} alt="Signature" /></td>
+                    <td><img src={`data:image/png;base64,${signature}`} style={{height:60, width:120}} alt="Signature" /></td>
                     <td>{isComplete.toString()}</td>
                     <td>{user_id}</td>
                     <td>{formatDate(createdAt)}</td>

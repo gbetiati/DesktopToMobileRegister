@@ -9,8 +9,7 @@ import Test from "../components/Test"
 const HomeScreen = () => {
     return (
         <>
-         <BinaryTest />
-         <div className="bg bg-red-500 h-4"></div>
+        {/*<BinaryTest />*/}  
          <DashDoneTasks />
         </>
     )
