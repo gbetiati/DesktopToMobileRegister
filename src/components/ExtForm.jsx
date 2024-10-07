@@ -14,8 +14,8 @@ const ExtForm = ({ routeParam, onClickSend }) => {
   let nextId =  0;
   let createDate = new Date();
 
+  let positionVar = 0;
   let isCompleteVar = false;
-  let positionVar = isCompleteVar;
 
   const callFunction = async () => {
     setLoading(true);

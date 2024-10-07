@@ -44,11 +44,13 @@ const Form = () => {
       setShopData([]);
     }
   };
+  
+  const emptyListCondition = (shopData.length === 0 && (!inputFolder))
 
   return (
     <>
       <header className="bg-white">
-        <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+        <div className="mx-auto shadow-md px-4 py-6 sm:px-6 lg:px-8">
           <h1 className="text-3xl font-bold tracking-tight text-gray-900">
             Cadastro de rotas
           </h1>
@@ -265,7 +267,7 @@ const Form = () => {
                         nameFolder={inputFolder}
                         onClickCleanList={() => setShopData([])}
                       />
-                      <ButtonPost onClickPost={callFunction} />
+                      <ButtonPost emptyList={emptyListCondition} onClickPost={callFunction} />
                       <div className="self-center pt-6">
                         {showInitialContent ? null : (
                           <div>

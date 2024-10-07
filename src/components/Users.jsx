@@ -24,8 +24,8 @@ const Users = () => {
 
   return (
     <>
-      <header className="bg-white shadow">
-        <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+      <header className="bg-white shado">
+        <div className="mx-auto shadow-md px-4 py-6 sm:px-6 lg:px-8">
           <h1 className="text-3xl font-bold tracking-tight text-gray-900">
             Usuários
           </h1>
@@ -45,32 +45,30 @@ const Users = () => {
                   <thead>
                     <tr
                     key={nextId++}>
-                      <th>Nº</th>
+                      <th></th>
                       <th>Nome</th>
-                      <th>Cargo</th>
                       <th>Email</th>
                       <th>ID de usuário</th>
-                      <th>Editar </th>
+                      <th>Editar</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {userJsonData.map(({ name, email, user_id }) => (
+                    {userJsonData.map(({ name, email, user_id, picture }) => (
                       <tr key={nextId++}>
-                        <th>{nextId++}</th>
                         <td>
                           <div className="flex items-center gap-3">
                             <div className="avatar">
                               <div className="mask mask-squircle h-12 w-12">
                                 <img
-                                  src="https://media.licdn.com/dms/image/D4D03AQHQH29AhYjc3A/profile-displayphoto-shrink_200_200/0/1692802433277?e=2147483647&v=beta&t=CCST1IJojYlttDR2287GPmy7Jdv4Jpbpblh5y3nobjI"
-                                  alt="Avatar Tailwind CSS Component"
+                                  src={picture}
+                                  alt="Avatar"
                                 />
                               </div>
                             </div>
-                            <div className="font-bold">{name}</div>
+
                           </div>
                         </td>
-                        <td>{email}</td>
+                        <td>{name}</td>
                         <td>{email}</td>
                         <td>{user_id}</td>
                         <th>

@@ -17,8 +17,18 @@ const getDayOfWeek = (dateString) => {
 const getMonth = (dateString) => {
   const date = new Date(dateString);
   const monthsOfYear = [
-    "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", 
-    "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+    "Janeiro",
+    "Fevereiro",
+    "Março",
+    "Abril",
+    "Maio",
+    "Junho",
+    "Julho",
+    "Agosto",
+    "Setembro",
+    "Outubro",
+    "Novembro",
+    "Dezembro",
   ];
   return monthsOfYear[date.getMonth()];
 };
@@ -95,8 +105,14 @@ const DashDoneTasks = () => {
 
   useEffect(() => {
     const applyFilters = () => {
-      const { description, isComplete, user_id, dayOfWeek, month, routeBelong } =
-        filterCriteria;
+      const {
+        description,
+        isComplete,
+        user_id,
+        dayOfWeek,
+        month,
+        routeBelong,
+      } = filterCriteria;
       const filtered = allDoneTasksJson.filter((task) => {
         const taskDayOfWeek = getDayOfWeek(task.createdAt);
         const taskMonth = getMonth(task.createdAt);
@@ -126,9 +142,16 @@ const DashDoneTasks = () => {
 
   return (
     <>
-      <div className="p-4 m-6 bg-slate-50 border-[1px] border-">
+      <header className="bg-white shado">
+        <div className="mx-auto shadow-md mb-28 px-4 py-6 sm:px-6 lg:px-8">
+          <h1 className="text-3xl font-bold tracking-tight text-gray-900">
+            Gerenciamento de serviços
+          </h1>
+        </div>
+      </header>
+      <div className="p-4 pt-10 m-6 bg-zinc-50 border-[1px] mx-20">
         <div className="flex flex-row" name="filters div">
-          <div className="grid grid-cols-2 w-1/2 bg-slate-200 border-2 m-3 border-slate-300">
+          <div className="grid grid-cols-2 w-1/2 p-3 rounded-lg shadow-md bg-zinc-50 border-[1px] m-3 border-gray-300">
             <label>
               {filtersPlaceHolders.descriptionInput}:
               <input
@@ -157,7 +180,7 @@ const DashDoneTasks = () => {
                 onChange={handleFilterChange}
                 className="rounded-md border-gray-300 p-1 w-44"
               >
-                <option value="">All</option>
+                <option value="">Todos</option>
                 <option value="true">True</option>
                 <option value="false">False</option>
               </select>
@@ -170,7 +193,7 @@ const DashDoneTasks = () => {
                 onChange={handleFilterChange}
                 className="ml-2 rounded-md border-gray-300 p-1 w-44"
               >
-                <option value="">All</option>
+                <option value="">Todos</option>
                 {pathsJsonData.map((route, index) => (
                   <option key={index} value={route}>
                     {route}
@@ -180,7 +203,7 @@ const DashDoneTasks = () => {
             </label>
           </div>
 
-          <div className="w-1/2 bg-slate-200 p-3 border-2 m-3 border-slate-300">
+          <div className="w-1/2 bg-zinc-50 shadow-md p-3 border-[1px] m-3 rounded-lg border-gray-300">
             <h2 className="mb-4">Filtro de data</h2>
             <label className="ml-4">
               {filtersPlaceHolders.dayWeekSelect}:
@@ -190,8 +213,8 @@ const DashDoneTasks = () => {
                 onChange={handleFilterChange}
                 className="ml-2 rounded-md border-gray-300 p-1"
               >
-                <option value="">All</option>
-                <option value="Sunday">Sunday</option>
+                <option value="">Todos</option>
+                <option value="Sunday">Domingo</option>
                 <option value="Monday">Segunda-feira</option>
                 <option value="Tuesday">Terça-feira</option>
                 <option value="Wednesday">Quarta-feira</option>
@@ -200,7 +223,6 @@ const DashDoneTasks = () => {
                 <option value="Saturday">Sábado</option>
               </select>
             </label>
-
             <label className="ml-4">
               {filtersPlaceHolders.monthSelect}:
               <select
@@ -209,7 +231,7 @@ const DashDoneTasks = () => {
                 onChange={handleFilterChange}
                 className="ml-2 rounded-md border-gray-300 p-1"
               >
-                <option value="">All</option>
+                <option value="">Todos</option>
                 <option value="Janeiro">Janeiro</option>
                 <option value="Fevereiro">Fevereiro</option>
                 <option value="Março">Março</option>
@@ -227,41 +249,54 @@ const DashDoneTasks = () => {
           </div>
         </div>
 
-        <div className="overflow-x-auto">
-          <table className="table table-sm">
-            <thead>
+        <div className="relative overflow-x-auto rounded-xl shadow-lg mx-3 mt-8">
+          <table className="w-full text-sm text-left rtl:text-right text-black">
+            <thead className="text-md text-zinc-200 uppercase bg-gray-800">
               <tr>
-                <th className="py-5">N</th>
+                <th className="py-4 px-6">N</th>
                 <th>Nome da loja</th>
                 <th>Assinatura</th>
-                <th>Serviço realizado</th>
-                <th>Usuário</th>
                 <th>Data</th>
+                <th>Assinado</th>
+                <th>ID de usuário</th>
               </tr>
             </thead>
             <tbody>
               {filteredTasks.map(
-                ({ description, createdAt, user_id, isComplete, signature }) => (
-                  <tr key={nextId++}>
-                    <th>{nextId}</th>
-                    <td>{description}</td>
-                    <td><img src={`data:image/png;base64,${signature}`} style={{height:60, width:120}} alt="Signature" /></td>
-                    <td>{isComplete.toString()}</td>
-                    <td>{user_id}</td>
-                    <td>{formatDate(createdAt)}</td>
+                ({
+                  description,
+                  createdAt,
+                  user_id,
+                  isComplete,
+                  signature,
+                }) => (
+                  <tr
+                    key={nextId++}
+                    class="bg-zinc-50 border-t  border-gray-500"
+                  >
+                    <td
+                      scope="row"
+                      class="pl-7 py-4 font-medium text-gray-900 whitespace-nowrap"
+                    >
+                      {nextId}
+                    </td>
+                    <td className=" py-4">{description}</td>
+                    <td className=" py-4">
+                      <img
+                        src={`data:image/png;base64,${signature}`}
+                        style={{ height: 60, width: 120 }}
+                        alt="Signature"
+                      />
+                    </td>
+                    <td className=" py-4">{formatDate(createdAt)}</td>
+                    <td className=" py-4">{isComplete.toString()}</td>
+                    <td className=" py-4">{user_id}</td>
                   </tr>
                 )
               )}
             </tbody>
             <tfoot>
-              <tr>
-                <th></th>
-                <th>Nome</th>
-                <th>Assinatura</th>
-                <th>Serviço</th>
-                <th>Usuário</th>
-                <th>Data</th>
-              </tr>
+             
             </tfoot>
           </table>
         </div>

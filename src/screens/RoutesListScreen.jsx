@@ -1,5 +1,4 @@
 import RegisteredRoutes from '../components/RegisteredRoutes'
-import React from "react"
 
 const RoutesListScreen = () => {
     return (

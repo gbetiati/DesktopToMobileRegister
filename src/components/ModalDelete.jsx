@@ -1,6 +1,6 @@
 const ModalDelete = ({ onConfirmDel, onCancelDel, loading , showInitialContent}) => {
   return (
-    <div className="card bg-zinc-200 text-neutral -content w-96">
+    <div className="card bg-zinc-200 text-neutral w-96">
       <div className="card-body items-center text-center">
         <h2 className="card-title">Confirmação</h2>
         <p>Deseja realmente deletar a loja?</p>

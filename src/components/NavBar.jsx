@@ -3,7 +3,7 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
 
 const navigation = [
-  { name: 'Inicio', href: '/inicio', current: false },
+  { name: 'Dashboard', href: '/inicio', current: false },
   { name: 'Cadastrar rota', href: '/form', current: false},
   { name: 'Gerenciar rotas', href: '/RoutesListScreen', current: false },
   { name: 'Usuários', href: '/users', current: false },
@@ -12,6 +12,8 @@ const navigation = [
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
+
+
 
 function  Navbar() {
   return (
@@ -27,14 +29,15 @@ function  Navbar() {
               <XMarkIcon aria-hidden="true" className="hidden h-6 w-6 group-data-[open]:block" />
             </DisclosureButton>
           </div>
-          <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-            <div className="flex flex-shrink-0 items-center">
-              <img
-                alt="Your Company"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                className="h-8 w-auto"
-              />
-            </div>
+          <div className="flex items-center">
+
+          <Link to={`/inicio`}>
+          <div className='w-28' onClick={null}>
+                <img src="//sauberglas.com.br/wp-content/uploads/2022/05/cropped-logo_nova2-removebg-preview.png" alt=""/>
+              </div>
+          </Link>
+              
+   
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
                 {navigation.map((item) => (

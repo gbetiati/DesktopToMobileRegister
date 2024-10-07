@@ -16,10 +16,10 @@ const RegisterList = ({ shopDataList, nameFolder, onClickCleanList }) => {
           </div>
         </div>
         <div>
-          <button className="bg-gray-200 hover:bg-gray-300 space-x-2 text-gray-800 font-normal py-0.5 px-3 mr-1 rounded inline-flex items-center"
+          <button className="bg-gray-200 hover:bg-gray-300 space-x-2 text-gray-800 font-normal py-1 px-3 mr-1 rounded inline-flex items-center"
                   onClick={onClickCleanList}
           >
-          <span className="tex text-sm">Limpar</span>
+          <span className="tex text-sm font-mono">Limpar</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="14"
